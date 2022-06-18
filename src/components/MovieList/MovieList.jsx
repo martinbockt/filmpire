@@ -12,7 +12,7 @@ const MovieList = ({ movies }) => {
     const classes = useStyles({theme})
 
     return (
-        <Grid container sx={{...classes.movieContainer}}>
+        <Grid container sx={classes.movieContainer}>
             {movies.results.map((movie, i) => (
                 <Movie key={i} movie={movie} i={i} />
             ))}

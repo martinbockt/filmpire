@@ -16,7 +16,7 @@ const App = () => {
             <NavBar/>
             <classes.Content>
                 <div 
-                style={{...classes.Toolbar}}
+                style={classes.Toolbar}
                  />
                 <Routes>
                     <Route exact path='/' element={<Movies/>}/>
