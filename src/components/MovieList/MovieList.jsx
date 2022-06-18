@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from '@mui/material'
+import { Box } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
 
@@ -12,11 +12,11 @@ const MovieList = ({ movies }) => {
     const classes = useStyles({theme})
 
     return (
-        <Grid container sx={classes.movieContainer}>
+        <Box container sx={classes.movieContainer}>
             {movies.results.map((movie, i) => (
                 <Movie key={i} movie={movie} i={i} />
             ))}
-        </Grid>
+        </Box>
     )
 }
 

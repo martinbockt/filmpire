@@ -3,5 +3,10 @@
 }
 
 .movie_image:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
+}
+
+.navbar_linkbutton {
+    color: white !important;
+    text-decoration: none;
 }

@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 
-const drawerWidth = 240
+const drawerWidth = 268
 
 const useStyles = ({theme}) => ({
 
@@ -9,7 +9,7 @@ const useStyles = ({theme}) => ({
         height: '80px',
         display: 'flex',
         justifyContent: 'space-between',
-        marginLeft: '240px',
+        marginLeft: drawerWidth + 'px',
         [theme.breakpoints.down('sm')]: {
             marginLeft: 0,
             flexWrap: 'wrap',

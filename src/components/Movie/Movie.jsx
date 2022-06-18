@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Grid, Grow, Tooltip, Rating } from '@mui/material'
+import { Typography, Box, Grow, Tooltip, Rating } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useTheme } from '@mui/material/styles'
 
@@ -12,7 +12,7 @@ const Movie = ({ movie, i}) => {
     const classes = useStyles({theme})
 
     return (
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} sx={classes.movie}>
+        <Box item sx={classes.movie}>
             <Grow in key={i} timeout={ (i+1) * 250}>
                 <Link style={classes.links} className="movie_links" to={`/movie/${movie.id}`}>
                     <img 
@@ -28,7 +28,7 @@ const Movie = ({ movie, i}) => {
                     <Rating readOnly value={movie.vote_average / 2} precision={0.1} />
                 </div>
             </Tooltip>
-        </Grid>
+        </Box>
     )
 }
 

@@ -12,9 +12,9 @@ const useStyles = ({theme}) => ({
         width: '70%'
     },
     movieContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+        gap: '10px',
         overflow: 'auto',
         [theme.breakpoints.down('sm')]: {
             justifyContent: 'center'

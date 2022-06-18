@@ -20,7 +20,8 @@ const useStyles = ({theme}) => ({
     },
     image: {
         borderRadius: '20px',
-        height: '300px',
+        // height: '300px',
+        width: '100%',
         marginBottom: '10px',
     },
     title: {
@@ -31,6 +32,8 @@ const useStyles = ({theme}) => ({
         overflow: 'hidden',
         marginTop: '10px',
         marginBottom: 0,
+        marginLeft: 'auto',
+        marginRight: 'auto',
         textAlign: 'center'
     }
 })
