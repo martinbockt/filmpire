@@ -23,6 +23,7 @@ const App = () => {
                     <Route exact path='/movie/:id' element={<MovieInformation/>}/>
                     <Route exact path='/actors/:id' element={<Actors/>}/>
                     <Route exact path='/profile/:id' element={<Profile/>}/>
+                    <Route exact path='/approved' element={<Profile />}/>
                 </Routes>
             </classes.Content>
         </classes.Root>
