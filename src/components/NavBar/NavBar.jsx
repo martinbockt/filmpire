@@ -18,7 +18,7 @@ const NavBar = () => {
   return (
     <>
       <AppBar position='fixed'>
-        <Toolbar sx={{...classes.toolbar}}>
+        <Toolbar sx={classes.toolbar}>
           {isMobile && (
             <IconButton
               color="inherit"
@@ -45,7 +45,7 @@ const NavBar = () => {
                 color="inherit" 
                 component={Link} 
                 to={`/profile/:id`} 
-                sx={{...classes.linkButton}} 
+                sx={classes.linkButton} 
                 onClick={() => {}}
               >
                 {!isMobile && <>My Movies &nbsp;</>}
