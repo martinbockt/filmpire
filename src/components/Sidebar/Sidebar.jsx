@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Divider, List, ListItem, ListItemText, ListSubheader, ListIdemIcon, Box, CircularProgress, ListItemIcon } from '@mui/material'
+import { Divider, List, ListItem, ListItemText, ListSubheader, Box, CircularProgress, ListItemIcon } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useTheme } from '@mui/material/styles'
 import { useDispatch, useSelector } from 'react-redux'
@@ -29,8 +29,9 @@ function Sidebar({ setMobileOpen }) {
     return (
         <>
             <Link to="/" style={classes.imageLink}>
-                <img 
-                    style={classes.image}
+                <Box
+                    component="img" 
+                    sx={classes.image}
                     src={theme.palette.mode === 'light' ? redLogo : blueLogo}
                     alt="Filmpire Logo"
                 />
@@ -42,7 +43,7 @@ function Sidebar({ setMobileOpen }) {
                     <Link key={value} style={classes.links} to="/">
                         <ListItem onClick={() => dispatch(selectGenreOrCategory(value))}>
                             <ListItemIcon>
-                                <img src={genreIcons[label.toLowerCase()]} alt={label + 'Category'} style={classes.genreImages} height={30} />
+                                <Box component="img" src={genreIcons[label.toLowerCase()]} alt={label + 'Category'} sx={classes.genreImages} height={30} />
                             </ListItemIcon>
                             <ListItemText primary={label}/>
                         </ListItem>
@@ -60,7 +61,7 @@ function Sidebar({ setMobileOpen }) {
                     <Link key={id} style={classes.links} to="/">
                         <ListItem onClick={() => dispatch(selectGenreOrCategory(id))}>
                             <ListItemIcon>
-                                <img src={genreIcons[name.toLowerCase()]} alt={name + 'Category'} style={classes.genreImages} height={30} />
+                                <Box component="img" src={genreIcons[name.toLowerCase()]} alt={name + 'Category'} sx={classes.genreImages} height={30} />
                             </ListItemIcon>
                             <ListItemText primary={name}/>
                         </ListItem>
