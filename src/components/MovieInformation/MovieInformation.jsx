@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, useMediaQuery, Rating } from '@mui/material'
 import { Movie as MovieIcon, Theaters, Language, PlusOne, Favorite, FavoriteBorderOutlined, Remove, ArrowBack} from '@mui/icons-material'
 import { useTheme } from '@mui/material/styles'
@@ -24,6 +24,8 @@ function MovieInformation() {
 
   const isMovieFavorited = true
   const isMovieWatchlisted = true
+
+  const [open, setOpen] = useState(false)
 
   const addToFavorites = () => {
 
@@ -115,7 +117,7 @@ function MovieInformation() {
               <ButtonGroup size="small" variant="outlined">
                 <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>Website</Button>
                 <Button target="_blank" rel="noopener noreferrer" href={`https://www.imdb.com/title/${data?.imdb_id}`} endIcon={<MovieIcon />}>IMDB</Button>
-                <Button onClick={() => {}} href="#" endIcon={<Theaters />}>Trailer</Button>
+                <Button onClick={() => setOpen(() => (true))} href="#" endIcon={<Theaters />}>Trailer</Button>
               </ButtonGroup>
             </Grid>
             <Grid item xs={12} sm={6} sx={classes.buttonsContainer}>
@@ -141,6 +143,23 @@ function MovieInformation() {
         : <Box>Sorry nothing has been found</Box>
         }
       </Box>
+      <Modal
+        closeAfterTransition
+        sx={classes.modal}
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        {data?.videos?.results?.length > 0 && (
+          <Box
+            component="iframe"
+            autoPlay
+            sx={classes.video}
+            title="Trailer"
+            src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+            allow="autoplay"
+          />
+        )}
+      </Modal>
     </Grid>
   )
 }
