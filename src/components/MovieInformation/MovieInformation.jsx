@@ -9,11 +9,13 @@ import axios from 'axios'
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory'
 import genreIcons from '../../assets/genres'
 import useStyles from './styles'
-import { useGetMovieQuery } from '../../services/TMDB'
+import { useGetMovieQuery, useGetRecommendationsQuery } from '../../services/TMDB'
+import { MovieList } from '..'
 
 function MovieInformation() {
   const { id } = useParams()
   const { data, isFetching, error } = useGetMovieQuery(id)
+  const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id})
   const dispatch = useDispatch()
 
 
@@ -108,28 +110,37 @@ function MovieInformation() {
             )).slice(0,6)}
         </Grid>
         <Grid item container sx={{marginTop: '2rem'}}>
-              <Box sx={classes.buttonsContainer}>
-                <Grid item xs={12} sm={6} sx={classes.buttonsContainer}>
-                  <ButtonGroup size="small" variant="outlined">
-                    <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>Website</Button>
-                    <Button target="_blank" rel="noopener noreferrer" href={`https://www.imdb.com/title/${data?.imdb_id}`} endIcon={<MovieIcon />}>IMDB</Button>
-                    <Button onClick={() => {}} href="#" endIcon={<Theaters />}>Trailer</Button>
-                  </ButtonGroup>
-                </Grid>
-                <Grid item xs={12} sm={6} sx={classes.buttonsContainer}>
-                  <ButtonGroup size="medium" variant="outlined">
-                    <Button onClick={addToFavorites} endIcon={isMovieFavorited ? <FavoriteBorderOutlined /> : <Favorite />}>{isMovieFavorited ? "Unfavorite" : "Favorite"}</Button>
-                    <Button onClick={addToWatchlist} endIcon={addToWatchlist ? <Remove /> : <PlusOne />}>Watchlist</Button>
-                    <Button onClick={addToWatchlist} endIcon={<ArrowBack />} sx={{ borderColor: 'primary.main'}}>
-                      <Typography component={Link} to="/" color="inherit" variant="subtitle2" sx={{ textDecoration: 'none'}}>
-                        Back
-                      </Typography>
-                    </Button>
-                  </ButtonGroup>
-                </Grid>
-              </Box>
+          <Box sx={classes.buttonsContainer}>
+            <Grid item xs={12} sm={6} sx={classes.buttonsContainer}>
+              <ButtonGroup size="small" variant="outlined">
+                <Button target="_blank" rel="noopener noreferrer" href={data?.homepage} endIcon={<Language />}>Website</Button>
+                <Button target="_blank" rel="noopener noreferrer" href={`https://www.imdb.com/title/${data?.imdb_id}`} endIcon={<MovieIcon />}>IMDB</Button>
+                <Button onClick={() => {}} href="#" endIcon={<Theaters />}>Trailer</Button>
+              </ButtonGroup>
+            </Grid>
+            <Grid item xs={12} sm={6} sx={classes.buttonsContainer}>
+              <ButtonGroup size="medium" variant="outlined">
+                <Button onClick={addToFavorites} endIcon={isMovieFavorited ? <FavoriteBorderOutlined /> : <Favorite />}>{isMovieFavorited ? "Unfavorite" : "Favorite"}</Button>
+                <Button onClick={addToWatchlist} endIcon={addToWatchlist ? <Remove /> : <PlusOne />}>Watchlist</Button>
+                <Button onClick={addToWatchlist} endIcon={<ArrowBack />} sx={{ borderColor: 'primary.main'}}>
+                  <Typography component={Link} to="/" color="inherit" variant="subtitle2" sx={{ textDecoration: 'none'}}>
+                    Back
+                  </Typography>
+                </Button>
+              </ButtonGroup>
+            </Grid>
+          </Box>
         </Grid>
       </Grid>
+      <Box sx={{ marginTop: '5rem', width: '100%'}}>
+        <Typography variant="h3" gutterBottom align="center">
+          You might also like
+        </Typography>
+        {recommendations
+        ? <MovieList movies={recommendations} numberOfMovies={12}/>
+        : <Box>Sorry nothing has been found</Box>
+        }
+      </Box>
     </Grid>
   )
 }
