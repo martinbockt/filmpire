@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Typography, Button, ButtonGroup, Grid, Box, CircularProgress, useMediaQuery } from '@mui/material'
 import { Movie as MovieIcon, Theaters, Language, ArrowBack} from '@mui/icons-material'
 import { useTheme } from '@mui/material/styles'
@@ -11,8 +11,7 @@ import { MovieList } from '..'
 function Actors() {
   const { id } = useParams()
   const { data, isFetching, error } = useGetActorQuery(id)
-  const { data: recommendations, isFetching: isRecommendationsFetching } = useGetActorCreditsQuery(id)
-
+  const { data: movies, isFetching: ismoviesFetching } = useGetActorCreditsQuery(id)
 
   const theme = useTheme()
   const classes = useStyles({theme})
@@ -69,8 +68,8 @@ function Actors() {
         <Typography component="h2" variant="h3" gutterBottom align="center">
           Movies
         </Typography>
-        {recommendations
-        ? <MovieList movies={recommendations} numberOfMovies={12}/>
+        {movies
+        ? <MovieList movies={movies}/>
         : <Box>Sorry nothing has been found</Box>
         }
       </Box>
