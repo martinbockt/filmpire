@@ -13,9 +13,15 @@ const MovieList = ({ movies, numberOfMovies }) => {
 
     return (
         <Box container sx={classes.movieContainer}>
-            {movies.results.slice(0, numberOfMovies).map((movie, i) => (
+            {movies?.results?.slice(0, numberOfMovies).map((movie, i) => (
                 <Movie key={i} movie={movie} i={i} />
             ))}
+
+            {movies?.cast?.slice(0, numberOfMovies).map((movie, i) => (
+                <Movie key={i} movie={movie} i={i} />
+            ))}
+
+
         </Box>
     )
 }
