@@ -7,16 +7,17 @@ import { Provider } from 'react-redux'
 import App from './components/App'
 import store from './app/store'
 import './styles.css'
+import ToggleColorModeProvider from './utils/ToggleColorMode'
 
-const theme = createTheme({})
 const container = document.getElementById('root')
 const root = createRoot(container)
+
 root.render(
     <Provider store={store}>
-        <ThemeProvider theme={theme}>
+        <ToggleColorModeProvider>
             <Router>
                 <App />
             </Router>
-        </ThemeProvider>
+        </ToggleColorModeProvider>
     </Provider>
 )
