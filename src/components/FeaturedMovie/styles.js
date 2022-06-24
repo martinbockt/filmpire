@@ -1,0 +1,40 @@
+import { styled } from '@mui/material/styles';
+
+const useStyles = ({theme}) => ({
+
+    featuredCardContainer: {
+       marginBottom: '20px',
+       display: 'flex',
+       justifyContent: 'center',
+       height: '490px',
+       textDecoration: 'none',
+    },
+    card: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        flexDirection: 'column',
+        position: 'relative',
+
+    },
+    cardMedia: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'rgba(0,0,0,0.575)',
+        backgroundBlendMode: 'darken',
+    },
+    cardContent: {
+        position: 'relative',
+        backgroundColor: 'transparent',
+        color: '#fff',
+        width: '40%',
+        [theme.breakpoints.down('md')]: {
+            width: '100%',
+        },
+    },
+})
+
+export default useStyles
